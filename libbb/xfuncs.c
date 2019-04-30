@@ -402,6 +402,9 @@ pid_t FAST_FUNC wait_any_nohang(int *wstat)
 // Wait for the specified child PID to exit, returning child's error return.
 int FAST_FUNC wait4pid(pid_t pid)
 {
+	errno = ENOSYS;
+	return -1;
+#if 0
 	int status;
 
 	if (pid <= 0) {
@@ -416,6 +419,7 @@ int FAST_FUNC wait4pid(pid_t pid)
 	if (WIFSIGNALED(status))
 		return WTERMSIG(status) + 0x180;
 	return 0;
+#endif
 }
 
 // Useful when we do know that pid is valid, and we just want to wait

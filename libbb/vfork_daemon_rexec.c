@@ -154,6 +154,8 @@ void FAST_FUNC run_noexec_applet_and_exit(int a, const char *name, char **argv)
  * -1 for failure.  Runs argv[0], searching path if that has no / in it. */
 pid_t FAST_FUNC spawn(char **argv)
 {
+	return -1;
+# if 0
 	/* Compiler should not optimize stores here */
 	volatile int failed;
 	pid_t pid;
@@ -190,6 +192,7 @@ pid_t FAST_FUNC spawn(char **argv)
 		return -1;
 	}
 	return pid;
+#endif
 }
 
 /* Die with an error message if we can't spawn a child process. */
@@ -203,6 +206,8 @@ pid_t FAST_FUNC xspawn(char **argv)
 
 int FAST_FUNC spawn_and_wait(char **argv)
 {
+	return -1;
+#if 0
 	int rc;
 #if ENABLE_FEATURE_PREFER_APPLETS && (NUM_APPLETS > 1)
 	int a = find_applet_by_name(argv[0]);
@@ -225,6 +230,7 @@ int FAST_FUNC spawn_and_wait(char **argv)
 #endif
 	rc = spawn(argv);
 	return wait4pid(rc);
+#endif
 }
 
 #if !BB_MMU

@@ -24,7 +24,8 @@ struct passwd* FAST_FUNC xgetpwnam(const char *name)
 
 struct group* FAST_FUNC xgetgrnam(const char *name)
 {
-	struct group *gr = getgrnam(name);
+	//struct group *gr = getgrnam(name);
+	struct group *gr = NULL;
 	if (!gr)
 		bb_error_msg_and_die("unknown group %s", name);
 	return gr;

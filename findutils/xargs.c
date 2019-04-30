@@ -136,6 +136,8 @@ struct globals {
  */
 static int xargs_exec(void)
 {
+	return -1;
+#if 0
 	int status;
 
 #if !ENABLE_FEATURE_XARGS_SUPPORT_PARALLEL
@@ -225,6 +227,7 @@ static int xargs_exec(void)
 	if (status != 0)
 		G.xargs_exitcode = status;
 	return status;
+#endif
 }
 
 /* In POSIX/C locale isspace is only these chars: "\t\n\v\f\r" and space.

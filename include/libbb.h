@@ -1121,7 +1121,7 @@ int BB_EXECVP(const char *file, char *const argv[]) FAST_FUNC;
 		execlp(prog, cmd, __VA_ARGS__); \
 	} while (0)
 #else
-#define BB_EXECVP(prog,cmd)     execvp(prog,cmd)
+#define BB_EXECVP(prog,cmd)     ({errno = ENOSYS; -1;})
 #define BB_EXECLP(prog,cmd,...) execlp(prog,cmd,__VA_ARGS__)
 #endif
 void BB_EXECVP_or_die(char **argv) NORETURN FAST_FUNC;

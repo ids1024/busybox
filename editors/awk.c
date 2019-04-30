@@ -2610,7 +2610,9 @@ static var *evaluate(node *op, var *res)
 				rstream *rsm = newfile(R.s);
 				if (!rsm->F) {
 					if (opn == '|') {
-						rsm->F = popen(R.s, "w");
+						// rsm->F = popen(R.s, "w");
+						errno = ENOSYS;
+						rsm->F = NULL;
 						if (rsm->F == NULL)
 							bb_perror_msg_and_die("popen");
 						rsm->is_pipe = 1;
@@ -2767,7 +2769,9 @@ static var *evaluate(node *op, var *res)
 				rsm = newfile(L.s);
 				if (!rsm->F) {
 					if ((opinfo & OPCLSMASK) == OC_PGETLINE) {
-						rsm->F = popen(L.s, "r");
+						//rsm->F = popen(L.s, "r");
+						errno = ENOSYS;
+						rsm->F = NULL;
 						rsm->is_pipe = TRUE;
 					} else {
 						rsm->F = fopen_for_read(L.s);  /* not xfopen! */
