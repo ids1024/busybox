@@ -65,7 +65,7 @@ CFLAGS += $(call cc-option,-fno-builtin-printf,)
 #CFLAGS += $(call cc-option,-Wconversion,)
 
 ifneq ($(CONFIG_DEBUG),y)
-CFLAGS += #-Os
+CFLAGS += -Os
 else
 CFLAGS += $(call cc-option,-g,)
 #CFLAGS += "-D_FORTIFY_SOURCE=2"
