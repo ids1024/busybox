@@ -341,8 +341,11 @@ static int writeTarHeader(struct TarBallInfo *tbInfo,
 	PUT_OCTAL(header.mtime, statbuf->st_mtime >= 0 ? statbuf->st_mtime : 0);
 
 	/* Enter the user and group names */
-	safe_strncpy(header.uname, get_cached_username(statbuf->st_uid), sizeof(header.uname));
-	safe_strncpy(header.gname, get_cached_groupname(statbuf->st_gid), sizeof(header.gname));
+	//safe_strncpy(header.uname, get_cached_username(statbuf->st_uid), sizeof(header.uname));
+	//safe_strncpy(header.gname, get_cached_groupname(statbuf->st_gid), sizeof(header.gname));
+	safe_strncpy(header.uname, "", sizeof(header.uname));
+	safe_strncpy(header.gname, "", sizeof(header.gname));
+
 
 	if (tbInfo->hlInfo) {
 		/* This is a hard link */

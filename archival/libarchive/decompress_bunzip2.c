@@ -127,7 +127,8 @@ static unsigned get_bits(bunzip_data *bd, int bits_wanted)
 			/* if "no input fd" case: in_fd == -1, read fails, we jump */
 			bd->inbufCount = read(bd->in_fd, bd->inbuf, IOBUF_SIZE);
 			if (bd->inbufCount <= 0)
-				longjmp(*bd->jmpbuf, RETVAL_UNEXPECTED_INPUT_EOF);
+				abort();
+				//longjmp(*bd->jmpbuf, RETVAL_UNEXPECTED_INPUT_EOF);
 			bd->inbufPos = 0;
 		}
 
@@ -785,7 +786,8 @@ unpack_bz2_stream(transformer_state_t *xstate)
 		jmp_buf jmpbuf;
 
 		/* Setup for I/O error handling via longjmp */
-		i = setjmp(jmpbuf);
+		//i = setjmp(jmpbuf);
+		i = 0;
 		if (i == 0)
 			i = start_bunzip(&jmpbuf, &bd, xstate->src_fd, outbuf + 2, len);
 
@@ -856,7 +858,8 @@ unpack_bz2_data(const char *packed, int packed_len, int unpacked_len)
 	jmp_buf jmpbuf;
 
 	/* Setup for I/O error handling via longjmp */
-	i = setjmp(jmpbuf);
+	//i = setjmp(jmpbuf);
+	i = 0;
 	if (i == 0) {
 		i = start_bunzip(&jmpbuf,
 			&bd,

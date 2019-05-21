@@ -246,7 +246,8 @@ static void abort_unzip(STATE_PARAM_ONLY) NORETURN;
 static void abort_unzip(STATE_PARAM_ONLY)
 {
 	huft_free_all(PASS_STATE_ONLY);
-	longjmp(error_jmp, 1);
+	//longjmp(error_jmp, 1);
+	abort();
 }
 
 static unsigned fill_bitbuffer(STATE_PARAM unsigned bitbuffer, unsigned *current, const unsigned required)
@@ -1010,12 +1011,14 @@ inflate_unzip_internal(STATE_PARAM transformer_state_t *xstate)
 	gunzip_crc = ~0;
 
 	error_msg = "corrupted data";
+#if 0
 	if (setjmp(error_jmp)) {
 		/* Error from deep inside zip machinery */
 		bb_error_msg(error_msg);
 		n = -1;
 		goto ret;
 	}
+#endif
 
 	while (1) {
 		int r = inflate_get_next_window(PASS_STATE_ONLY);

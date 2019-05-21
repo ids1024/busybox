@@ -338,7 +338,7 @@ int tail_main(int argc, char **argv)
 	fmt = NULL;
 
 	if (FOLLOW) while (1) {
-		sleep(sleep_period);
+		//sleep(sleep_period);
 
 		i = 0;
 		do {

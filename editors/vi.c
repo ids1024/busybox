@@ -2824,7 +2824,8 @@ static int mysleep(int hund)	// sleep for 'hund' 1/100 seconds or stdin ready
 
 	pfd[0].fd = STDIN_FILENO;
 	pfd[0].events = POLLIN;
-	return safe_poll(pfd, 1, hund*10) > 0;
+	//return safe_poll(pfd, 1, hund*10) > 0;
+	return 0;
 }
 
 //----- IO Routines --------------------------------------------

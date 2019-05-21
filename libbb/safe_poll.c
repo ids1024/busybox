@@ -13,6 +13,7 @@
  * Warning! May take longer than timeout_ms to return! */
 int FAST_FUNC safe_poll(struct pollfd *ufds, nfds_t nfds, int timeout)
 {
+#if 0
 	while (1) {
 		int n = poll(ufds, nfds, timeout);
 		if (n >= 0)
@@ -30,4 +31,7 @@ int FAST_FUNC safe_poll(struct pollfd *ufds, nfds_t nfds, int timeout)
 		bb_perror_msg("poll");
 		return n;
 	}
+#endif
+
+	return -1;
 }

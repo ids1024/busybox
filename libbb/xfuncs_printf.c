@@ -416,12 +416,14 @@ void FAST_FUNC xfchdir(int fd)
 		bb_perror_msg_and_die("fchdir");
 }
 
+#if 0
 void FAST_FUNC xchroot(const char *path)
 {
 	if (chroot(path))
 		bb_perror_msg_and_die("can't change root directory to '%s'", path);
 	xchdir("/");
 }
+#endif
 
 // Print a warning message if opendir() fails, but don't die.
 DIR* FAST_FUNC warn_opendir(const char *path)
@@ -669,6 +671,7 @@ void FAST_FUNC generate_uuid(uint8_t *buf)
 	buf[4 + 2 + 2] = (buf[4 + 2 + 2] & 0x3f) | 0x80;
 }
 
+#if 0
 #if BB_MMU
 pid_t FAST_FUNC xfork(void)
 {
@@ -695,3 +698,4 @@ void FAST_FUNC xvfork_parent_waits_and_exits(void)
 	}
 	/* Child continues */
 }
+#endif

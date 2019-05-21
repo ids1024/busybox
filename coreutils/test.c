@@ -429,7 +429,8 @@ static void syntax(const char *op, const char *msg)
 	} else {
 		bb_error_msg("%s: %s"+4, msg);
 	}
-	longjmp(leaving, 2);
+	//longjmp(leaving, 2);
+	abort();
 }
 
 /* atoi with error detection */
@@ -848,9 +849,11 @@ int test_main(int argc, char **argv)
 	/* We must do DEINIT_S() prior to returning */
 	INIT_S();
 
+	/*
 	res = setjmp(leaving);
 	if (res)
 		goto ret;
+	*/
 
 	/* resetting ngroups is probably unnecessary.  it will
 	 * force a new call to getgroups(), which prevents using

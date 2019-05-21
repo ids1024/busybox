@@ -47,12 +47,14 @@ char* FAST_FUNC bb_ask_noecho(int fd, int timeout, const char *prompt)
 	memset(&sa, 0, sizeof(sa));
 	/* sa.sa_flags = 0; - no SA_RESTART! */
 	/* SIGINT and SIGALRM will interrupt reads below */
+#if 0
 	sa.sa_handler = askpass_timeout;
 	sigaction(SIGINT, &sa, &oldsa);
 	if (timeout) {
 		sigaction_set(SIGALRM, &sa);
 		alarm(timeout);
 	}
+#endif
 
 	ret = NULL;
 	i = 0;

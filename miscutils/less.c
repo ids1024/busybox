@@ -1124,7 +1124,8 @@ static int64_t getch_nowait(void)
 		while (1) {
 			int r;
 			/* NB: SIGWINCH interrupts poll() */
-			r = poll(pfd + rd, 2 - rd, -1);
+			//r = poll(pfd + rd, 2 - rd, -1);
+			r = -1;
 			if (/*r < 0 && errno == EINTR &&*/ winch_counter)
 				return '\\'; /* anything which has no defined function */
 			if (r) break;

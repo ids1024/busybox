@@ -237,7 +237,8 @@ int install_main(int argc, char **argv)
 				args[1] = (char*)"-p"; /* -p --preserve-dates */
 				args[2] = dest;
 				args[3] = NULL;
-				if (spawn_and_wait(args)) {
+				//if (spawn_and_wait(args)) {
+				if (1) {
 					bb_perror_msg("strip");
 					ret = EXIT_FAILURE;
 				}

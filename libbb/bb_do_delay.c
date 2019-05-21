@@ -10,6 +10,7 @@
 
 void FAST_FUNC bb_do_delay(int seconds)
 {
+#if 0
 	time_t start, now;
 
 	start = time(NULL);
@@ -17,4 +18,5 @@ void FAST_FUNC bb_do_delay(int seconds)
 		sleep(seconds);
 		now = time(NULL);
 	} while ((now - start) < seconds);
+#endif
 }

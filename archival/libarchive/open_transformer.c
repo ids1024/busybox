@@ -109,7 +109,8 @@ void FAST_FUNC fork_transformer(int fd, const char *transform_prog)
 	int pid;
 
 	xpiped_pair(fd_pipe);
-	pid = BB_MMU ? xfork() : xvfork();
+	//pid = BB_MMU ? xfork() : xvfork();
+	pid = -1;
 	if (pid == 0) {
 		/* Child */
 		close(fd_pipe.rd); /* we don't want to read from the parent */

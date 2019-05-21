@@ -28,7 +28,8 @@ int FAST_FUNC sigprocmask_allsigs(int how)
 {
 	sigset_t set;
 	sigfillset(&set);
-	return sigprocmask(how, &set, NULL);
+	//return sigprocmask(how, &set, NULL);
+	return -1;
 }
 
 int FAST_FUNC sigprocmask2(int how, sigset_t *set)
@@ -38,7 +39,8 @@ int FAST_FUNC sigprocmask2(int how, sigset_t *set)
 	// dance around that...
 	sigset_t *oset FIX_ALIASING;
 	oset = set;
-	return sigprocmask(how, set, oset);
+	return -1;
+	//return sigprocmask(how, set, oset);
 }
 
 void FAST_FUNC bb_signals(int sigs, void (*f)(int))
@@ -82,7 +84,7 @@ void FAST_FUNC sig_block(int sig)
 	sigset_t ss;
 	sigemptyset(&ss);
 	sigaddset(&ss, sig);
-	sigprocmask(SIG_BLOCK, &ss, NULL);
+	//sigprocmask(SIG_BLOCK, &ss, NULL);
 }
 
 void FAST_FUNC sig_unblock(int sig)
@@ -90,7 +92,7 @@ void FAST_FUNC sig_unblock(int sig)
 	sigset_t ss;
 	sigemptyset(&ss);
 	sigaddset(&ss, sig);
-	sigprocmask(SIG_UNBLOCK, &ss, NULL);
+	//sigprocmask(SIG_UNBLOCK, &ss, NULL);
 }
 
 void FAST_FUNC wait_for_any_sig(void)
