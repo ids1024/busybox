@@ -222,8 +222,7 @@ void FAST_FUNC data_extract_all(archive_handle_t *archive_handle)
 					if (pwd) uid = pwd->pw_uid;
 				}
 				if (file_header->tar__gname) {
-					//struct group *grp = getgrnam(file_header->tar__gname);
-					struct group *grp = NULL;
+					struct group *grp = getgrnam(file_header->tar__gname);
 					if (grp) gid = grp->gr_gid;
 				}
 			}

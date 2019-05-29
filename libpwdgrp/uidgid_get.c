@@ -30,8 +30,6 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 /* Always sets uid and gid */
 int FAST_FUNC get_uidgid(struct bb_uidgid_t *u, const char *ug)
 {
-	return 0;
-#if 0
 	struct passwd *pwd;
 	struct group *gr;
 	char *user, *group;
@@ -74,7 +72,6 @@ int FAST_FUNC get_uidgid(struct bb_uidgid_t *u, const char *ug)
 		u->gid = gr->gr_gid;
 	}
 	return 1;
-#endif
 }
 void FAST_FUNC xget_uidgid(struct bb_uidgid_t *u, const char *ug)
 {
