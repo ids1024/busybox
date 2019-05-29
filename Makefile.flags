@@ -45,7 +45,7 @@ CFLAGS += $(call cc-option,-Werror,)
 #CFLAGS += $(call cc-ifversion, -eq, 0404, -fno-strict-aliasing)
 endif
 # gcc 3.x emits bogus "old style proto" warning on find.c:alloc_action()
-CFLAGS += -Wold-style-definition
+CFLAGS += $(call cc-ifversion, -ge, 0400, -Wold-style-definition)
 
 CFLAGS += $(call cc-option,-fno-builtin-strlen -finline-limit=0 -fomit-frame-pointer -ffunction-sections -fdata-sections,)
 # -fno-guess-branch-probability: prohibit pseudo-random guessing
@@ -65,7 +65,7 @@ CFLAGS += $(call cc-option,-fno-builtin-printf,)
 #CFLAGS += $(call cc-option,-Wconversion,)
 
 ifneq ($(CONFIG_DEBUG),y)
-CFLAGS += #-Os
+CFLAGS += $(call cc-option,-Os,$(call cc-option,-O2,))
 else
 CFLAGS += $(call cc-option,-g,)
 #CFLAGS += "-D_FORTIFY_SOURCE=2"
